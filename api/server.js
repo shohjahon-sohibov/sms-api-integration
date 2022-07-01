@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const smsRoutes = require('../routes/smsRoutes')
+const router = require('../routes')
 const mongo = require('../utils/mongo')
 
 app.use(express.json())
@@ -8,7 +8,7 @@ mongo()
 .then(() => console.log('Connected'))
 .catch(err => console.log(err))
 
-app.use('/api/v1/', smsRoutes)
+app.use(router)
 
 app.get('/', (_, res) => {
     res.json("app works properly")
