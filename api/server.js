@@ -8,7 +8,7 @@ mongo()
 .then(() => console.log('Connected'))
 .catch(err => console.log(err))
 
-app.use('/api/sms/', smsRoutes)
+app.use('/api/v1/', smsRoutes)
 
 app.get('/', (_, res) => {
     res.json("app works properly")
