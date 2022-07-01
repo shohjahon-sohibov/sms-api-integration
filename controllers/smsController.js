@@ -63,9 +63,9 @@ const verifyPhoneNumber = async (req, res) => {
   }
 };
 
-const getPhones = async (req, res) => {
+const getPhones = async (_, res) => {
     try {
-        res.json(await Sms.find())
+        res.json("ok")
     } catch (error) {
         console.log({ error: error.message })
     }
