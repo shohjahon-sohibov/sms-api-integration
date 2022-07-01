@@ -10,15 +10,16 @@ const verifyPhoneNumber = {
       await newCode.save();
   
       let requestIdArr = [];
-                                          
+
+      const form = new FormData();
+      form.append('login', 'Urgaz');
+      form.append('password', 'Pq0Ho78U7ltOM6cvol6J');
+      form.append('data', JSON.stringify([{"phone": req.body.data[0].phone, "text": req.body.data[0].text}]));
+                           
       fetch('http://185.8.212.184/smsgateway/', {
           method: 'POST',
-          body: JSON.stringify({
-            login: "Urgaz",
-            password: "Pq0Ho78U7ltOM6cvol6J",
-            data: [{"phone": req.body.data[0].phone, "text": req.body.data[0].text}]
-          }),
-          headers: { 'Content-Type': 'application/json' }
+          body: form,
+          headers: { 'Content-Type': 'application/x-www-form-encoded' }
       }).then(res => res.json())
       .then( async (json, err) => {
         if(err) {
@@ -27,15 +28,18 @@ const verifyPhoneNumber = {
           const newSms = new Sms(json)
           await newSms.save()
           requestIdArr.push(newSms.request_id)
+
+          console.log(requestIdArr)
+
+          const form = new FormData();
+          form.append('login', 'Urgaz');
+          form.append('password', 'Pq0Ho78U7ltOM6cvol6J');
+          form.append('data', JSON.stringify([{"request_id": requestIdArr}]));
   
           fetch('http://185.8.212.184/smsgateway/status', {
             method: 'POST',
-            body: JSON.stringify({
-              login: "Urgaz",
-              password: "Pq0Ho78U7ltOM6cvol6J",
-              data: [{request_id: requestIdArr}]
-            }),
-            headers: { 'Content-Type': 'application/json' }
+            body: from,
+            headers: { 'Content-Type': 'application/x-www-form-encoded' }
           }).then(res => res.json())
             .then( async (json, err) => {
               if(err) {
