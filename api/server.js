@@ -10,5 +10,13 @@ mongo()
 
 app.use('/api/sms/', smsRoutes)
 
+app.get('/', (_, res) => {
+    res.json("app works properly")
+})
+
+app.use('*', (_, res) => {
+    res.json("wrong endpoint!")
+})
+
 const PORT = process.env.PORT || 8000
 app.listen(PORT, console.log(PORT))
