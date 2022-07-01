@@ -63,6 +63,15 @@ const verifyPhoneNumber = async (req, res) => {
   }
 };
 
+const getPhones = async (req, res) => {
+    try {
+        res.json(await Sms.find())
+    } catch (error) {
+        console.log({ error: error.message })
+    }
+}
+
 module.exports = {
-    verifyPhoneNumber
+    verifyPhoneNumber,
+    getPhones
 }
