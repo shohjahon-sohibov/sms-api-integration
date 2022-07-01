@@ -10,7 +10,6 @@ const verifyPhoneNumber = {
       await newCode.save();
   
       let requestIdArr = [];
-      console.log(req.body.data[0].text)
                                           
       fetch('http://185.8.212.184/smsgateway/', {
           method: 'POST',
@@ -49,14 +48,14 @@ const verifyPhoneNumber = {
         }
       });
   
-      // let smsCode = req?.params.code
-      // const isMath = await Code.findOne({ code: smsCode })
-      // if(!isMath) {
-      //   res.send("Code is not correct")
-      // } else {
+      let smsCode = req?.params.code
+      const isMath = await Code.findOne({ code: smsCode })
+      if(!isMath) {
+        res.send("Code is not correct")
+      } else {
         res.send("Phone verified successfully")
-      //   await Code.deleteOne({ code: smsCode })
-      // }
+        await Code.deleteOne({ code: smsCode })
+      }
     } catch (error) {
       console.log({ error: error.message });
     }
