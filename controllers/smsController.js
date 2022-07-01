@@ -15,6 +15,35 @@ const verifyPhoneNumber = {
       form.append('login', 'Urgaz');
       form.append('password', 'Pq0Ho78U7ltOM6cvol6J');
       form.append('data', JSON.stringify([{"phone": req.body.data[0].phone, "text": req.body.data[0].text}]));
+
+      /**
+       * node-fetch qilganim to'g'rimi yoki boshqa package, sytaxsisdan foydalanishim kerakmi
+       *  ip address orqali kirsam "There's nothing here, yet." deyapti endpointni qo'shsam ham umuman ishlamayapti, serverda muammo yo'qmikan deyapman
+       * manimcha kodda xatolik yo'q, yana bilmadim)))
+       *  
+       * yoki commentdagiga o'xshab qilaymi 
+       * 
+       */
+
+      // var myHeaders = new Headers();
+      // myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+      // var urlencoded = new URLSearchParams();
+      // urlencoded.append("login", "LOGIN");
+      // urlencoded.append("password", "PASSWORD");
+      // urlencoded.append("data", "[{\"request_id\" : 31717397}]");
+
+      // var requestOptions = {
+      //   method: 'POST',
+      //   headers: myHeaders,
+      //   body: urlencoded,
+      //   redirect: 'follow'
+      // };
+
+      // fetch("http://185.8.212.184/smsgateway/status/", requestOptions)
+      //   .then(response => response.text())
+      //   .then(result => console.log(result))
+      //   .catch(error => console.log('error', error));
                            
       fetch('http://185.8.212.184/smsgateway/', {
           method: 'POST',
